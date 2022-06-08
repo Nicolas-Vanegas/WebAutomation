@@ -9,10 +9,7 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Open;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
-import tasks.FillLocationForm;
-import tasks.FillPersonalForm;
-import tasks.GoToNextFormStep;
-import tasks.OpenForm;
+import tasks.*;
 import userinterfaces.HomePage;
 
 public class NewUserSteps {
@@ -28,7 +25,7 @@ public class NewUserSteps {
         actor.wasAbleTo(Open.browserOn(homePage));
     }
 
-    @When("^the user opens the form and enter the followings values (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$")
+    @When("^the user opens the form and enter the followings values (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$")
     public void theUserOpensTheFormAndEnterTheFollowingsValues(
             String firstName,
             String lastName,
@@ -40,13 +37,20 @@ public class NewUserSteps {
             String city,
             String zip,
             String country,
-            String state) {
+            String state,
+            String computerOperatingSystem,
+            String osVersion,
+            String osLanguage,
+            String mobileDeviceBrand,
+            String mobileModel,
+            String mobileDeviceOperatingSystem) {
         actor.wasAbleTo(
                 OpenForm.withJoinTodayButton(),
                 FillPersonalForm.withInputValues(firstName, lastName, email, language, monthOfBirth, dayOfBirth, yearOfBirth),
                 GoToNextFormStep.locationStep(),
                 FillLocationForm.withInputValues(city, zip, country, state),
-                GoToNextFormStep.locationStep()
+                GoToNextFormStep.locationStep(),
+                FillDevicesForm.withInputValues(computerOperatingSystem, osVersion, osLanguage, mobileDeviceBrand, mobileModel, mobileDeviceOperatingSystem)
         );
     }
 
