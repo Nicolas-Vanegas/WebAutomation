@@ -4,7 +4,7 @@ Feature: Go to the Utest.com page and click on the registration option.
   @Scenario
   Scenario: Start filling the registration form
     Given that new user accesses the Utest Website
-    When the user opens the form and enter the followings values Nicolas,Vanegas,Nicolas.p@hotmail.com,Spanish,number:1,24,1999,Washington,99301,United States,District of Columbia,Windows,10,Spanish,Lenovo,Lenovo X505L,Android 4.0.4
+    When the user opens the form and enter the followings values Nicolas,Vanegas,vesorod724@falkyz.com,Spanish,number:1,24,1999,Washington,99301,United States,District of Columbia,Windows,10,Spanish,Lenovo,Lenovo X505L,Android 4.0.4,Utest121314.
     Then the user is created
 
   Scenario Template: Start filling the registration form
@@ -17,9 +17,9 @@ Feature: Go to the Utest.com page and click on the registration option.
       | inputValue            |
       | Nicolas               |
       | Vanegas               |
-      | Nicolas.p@hotmail.com |
+      | vesorod724@falkyz.com |
       | Spanish               |
-      | number:2              |
+      | number:1              |
       | 24                    |
       | 1999                  |
       | Washington            |
@@ -32,5 +32,5 @@ Feature: Go to the Utest.com page and click on the registration option.
       | Lenovo                |
       | Lenovo X505L          |
       | Android 4.0.4         |
-
+      | Utest121314.          |
     # number:1 = January month

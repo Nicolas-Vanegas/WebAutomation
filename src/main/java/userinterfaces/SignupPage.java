@@ -47,4 +47,10 @@ public class SignupPage extends PageObject {
     public static final Target MOBILE_DEVICE_INPUT = Target.the("Mobile Device input").locatedBy("//div[@name='handsetMakerId']/input[@type='search']");
     public static final Target MOBILE_MODEL_INPUT = Target.the("Model input").locatedBy("//div[@name='handsetModelId']/input[@type='search']");
     public static final Target MOBILE_DEVICE_OS_INPUT = Target.the("Mobile device os input").locatedBy("//div[@name='handsetOSId']/input[@type='search']");
+
+    // Step 4. Last Step
+    public static final Target PASSWORD_INPUT = Target.the("Password input").located(By.id("password"));
+    public static final Target CONFIRM_PASSWORD_INPUT = Target.the("Confirm the password input").located(By.id("confirmPassword"));
+    public static final Target TERMS_OF_USE_CHECKMARK = Target.the("Confirm the password input").locatedBy("(//label[contains(@class, 'signup-consent')])[2]/span[contains(@class, 'checkmark')]");
+    public static final Target PRIVACITY_AND_SECURITY_POLICY_CHECKMARK = Target.the("Confirm the password input").locatedBy("(//label[contains(@class, 'signup-consent')])[3]/span[contains(@class, 'checkmark')]");
 }

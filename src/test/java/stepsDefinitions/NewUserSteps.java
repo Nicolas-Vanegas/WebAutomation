@@ -25,7 +25,7 @@ public class NewUserSteps {
         actor.wasAbleTo(Open.browserOn(homePage));
     }
 
-    @When("^the user opens the form and enter the followings values (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$")
+    @When("^the user opens the form and enter the followings values (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$")
     public void theUserOpensTheFormAndEnterTheFollowingsValues(
             String firstName,
             String lastName,
@@ -43,14 +43,17 @@ public class NewUserSteps {
             String osLanguage,
             String mobileDeviceBrand,
             String mobileModel,
-            String mobileDeviceOperatingSystem) {
+            String mobileDeviceOperatingSystem,
+            String password) {
         actor.wasAbleTo(
                 OpenForm.withJoinTodayButton(),
                 FillPersonalForm.withInputValues(firstName, lastName, email, language, monthOfBirth, dayOfBirth, yearOfBirth),
-                GoToNextFormStep.locationStep(),
+                GoToNextFormStep.next(),
                 FillLocationForm.withInputValues(city, zip, country, state),
-                GoToNextFormStep.locationStep(),
-                FillDevicesForm.withInputValues(computerOperatingSystem, osVersion, osLanguage, mobileDeviceBrand, mobileModel, mobileDeviceOperatingSystem)
+                GoToNextFormStep.next(),
+                FillDevicesForm.withInputValues(computerOperatingSystem, osVersion, osLanguage, mobileDeviceBrand, mobileModel, mobileDeviceOperatingSystem),
+                FillLastSteps.withInputValues(password),
+                GoToNextFormStep.next()
         );
     }
 

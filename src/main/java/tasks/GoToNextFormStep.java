@@ -10,7 +10,7 @@ import userinterfaces.SignupPage;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class GoToNextFormStep implements Task {
-    public static Performable locationStep() {
+    public static Performable next() {
         return instrumented(GoToNextFormStep.class);
     }
 
