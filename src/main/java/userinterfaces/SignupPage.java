@@ -25,6 +25,9 @@ public class SignupPage extends PageObject {
     public static final Target STATE_INPUT_DIV = Target.the("State input div").located(By.name("stateId"));
     public static final Target COUNTRY_INPUT_DIV = Target.the("Country input div").located(By.name("countryId"));
 
+    // To wait
+    public static final Target SPAN_FROM_GOOGLE_MAP_LIST = Target.the("done city").locatedBy("(//span[@class='pac-matched'])[1]");
+
     // Inputs
     public static final Target CITY_INPUT = Target.the("City input").located(By.id("city"));
     public static final Target ZIP_INPUT = Target.the("Zip input").located(By.id("zip"));
@@ -49,6 +52,8 @@ public class SignupPage extends PageObject {
     public static final Target MOBILE_DEVICE_OS_INPUT = Target.the("Mobile device os input").locatedBy("//div[@name='handsetOSId']/input[@type='search']");
 
     // Step 4. Last Step
+    // To Wait
+    public static final Target PASSWORD_CONFIRM_IS_DONE = Target.the("Password input").locatedBy("(//form/div[@class='row']/div)[2]/i");
     public static final Target PASSWORD_INPUT = Target.the("Password input").located(By.id("password"));
     public static final Target CONFIRM_PASSWORD_INPUT = Target.the("Confirm the password input").located(By.id("confirmPassword"));
     public static final Target TERMS_OF_USE_CHECKMARK = Target.the("Confirm the password input").locatedBy("(//label[contains(@class, 'signup-consent')])[2]/span[contains(@class, 'checkmark')]");
