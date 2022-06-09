@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Hit;
+import net.serenitybdd.screenplay.questions.Visibility;
 import org.apache.bcel.generic.IFNONNULL;
 import org.openqa.selenium.Keys;
 import userinterfaces.SignupPage;
@@ -46,13 +47,13 @@ public class FillLocationForm implements Task {
                 Enter.theValue(city).into(SignupPage.CITY_INPUT),
                 Hit.the(Keys.ARROW_DOWN).into(SignupPage.CITY_INPUT),
                 Hit.the(Keys.ENTER).into(SignupPage.CITY_INPUT),
-                Enter.theValue(zip).into(SignupPage.ZIP_INPUT),
                 Click.on(SignupPage.COUNTRY_INPUT_DIV),
                 Enter.theValue(country).into(SignupPage.COUNTRY_INPUT),
-                Hit.the(Keys.ENTER).into(SignupPage.COUNTRY_INPUT)
-        );
+                Hit.the(Keys.ENTER).into(SignupPage.COUNTRY_INPUT),
+                Enter.theValue(zip).into(SignupPage.ZIP_INPUT)
+                );
         // Valid if the State Input div exist to fill
-        if (SignupPage.STATE_INPUT_DIV.getName() != null) {
+        if (Visibility.of(SignupPage.STATE_INPUT_DIV).viewedBy(actor).asBoolean()) {
             actor.attemptsTo(
                     Click.on(SignupPage.STATE_INPUT_DIV),
                     Enter.theValue(state).into(SignupPage.STATE_INPUT),

@@ -11,6 +11,13 @@ import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 import tasks.*;
 import userinterfaces.HomePage;
+import userinterfaces.WelcomePage;
+
+import java.util.List;
+
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
+import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 
 public class NewUserSteps {
 
@@ -18,6 +25,7 @@ public class NewUserSteps {
     private WebDriver navigator;
     private Actor actor = Actor.named("Global");
     private HomePage homePage = new HomePage();
+    private WelcomePage welcomePage = new WelcomePage();
 
     @Given("^that new user accesses the Utest Website$")
     public void thatNewUserAccessesTheUtestWebsite() {
@@ -25,8 +33,8 @@ public class NewUserSteps {
         actor.wasAbleTo(Open.browserOn(homePage));
     }
 
-    @When("^the user opens the form and enter the followings values (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$")
-    public void theUserOpensTheFormAndEnterTheFollowingsValues(
+    @When("^the user opens the form and fill the signup form with followings values (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$")
+    public void theUserOpensTheFormAndFillTheSignupFormWithFollowingsValues(
             String firstName,
             String lastName,
             String email,
@@ -57,16 +65,28 @@ public class NewUserSteps {
         );
     }
 
-    @Then("^the user is created$")
-    public void theUserIsCreated() {
+    @Then("^the Customer is redirected to welcome page$")
+    public void theCustomerIsRedirectedToWelcomePage() {
+        actor.should(seeThat(the(WelcomePage.WELCOME_PAGE_DIV), isPresent()));
     }
 
     @Given("^that a new user accesses the Utest website$")
     public void thatANewUserAccessesTheUtestWebsite() {
+        actor.can(BrowseTheWeb.with(navigator));
+        actor.wasAbleTo(Open.browserOn(homePage));
     }
 
-    @When("^the user opens the form and enter the followings values$")
-    public void theUserOpensTheFormAndEnterTheFollowingsValues(DataTable arg1) {
+    @When("^the user opens the form and fill the signup form$")
+    public void theUserOpensTheFormAndFillTheSignupForm(List<String> data) {
+        actor.wasAbleTo(
+                OpenForm.withJoinTodayButton(),
+                FillPersonalForm.withInputValues(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), data.get(6)),
+                GoToNextFormStep.next(),
+                FillLocationForm.withInputValues(data.get(7), data.get(8), data.get(9), data.get(10)),
+                GoToNextFormStep.next(),
+                FillDevicesForm.withInputValues(data.get(11), data.get(12), data.get(13), data.get(14), data.get(15), data.get(16)),
+                FillLastSteps.withInputValues(data.get(17)),
+                GoToNextFormStep.next()
+        );
     }
-
 }
